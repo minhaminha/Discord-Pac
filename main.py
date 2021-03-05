@@ -27,8 +27,6 @@ async def on_message(message):
     
     if message.author == client.user:
         return
-
-    #gotta be able to delete these tfffffff
     
     if message.content.startswith('$help'):
         await message.delete(delay=2)
@@ -52,7 +50,6 @@ async def on_message(message):
 
         if single:
             player = message.author
-        #eventually create scoreboard
 
         await gameloop(message, maingame, player)
 
@@ -77,7 +74,6 @@ async def on_message(message):
         mode = discord.Embed(title="Discord-Pac is now in Channel Wide mode")
         await message.channel.send(embed=mode, delete_after=45)
 
-    #checks if in single mode and if right person sent the message
     elif started and len(nextmoves) < 3:
         if message.content.startswith('w'):
             nextmoves.append(Extra[15])
@@ -109,8 +105,8 @@ helpText = """
             $instructions = a guide to this version of the game! (recommended before playing)
             $pacplay = start a round of Pac-man!
             $stop = stop the game at any time!
-            $single = changes to single player mode! (Default)
-            $multi = changes to channel-wide mode!
+            $single = changes to single player mode! (Default) (unimplemented)
+            $multi = changes to channel-wide mode! (unimplemented)
             $topscore = shows this channel's high score!
             $help = view list of commands, information about the bot, etc.\n
             More features to come!
@@ -195,8 +191,7 @@ async def gameloop(message, maingame, player):
                 minutes = int((int(testtime[0])-seconds)/60)
                 desc = f"Your score was {maingame.score}, achieved in {minutes} minutes and {seconds} seconds! "
                 gameover = discord.Embed(title="Game Over!", description=desc+highscore)
-                #stats = """You ate: these things etc"""
-                #gameover.add_field(name="Stats",
+
                 contact = "For any problems or questions, you can contact me at minhalee999@gmail.com."
                 gameover.add_field(name="Thanks for playing!", value=contact, inline=False)
                 await message.channel.send(embed=gameover)
@@ -213,7 +208,7 @@ async def moveshit(main):
     
     if len(nextmoves)>=1:
         move = nextmoves[0]
-        if main.Pac.direction == move: #just in case same direction doesnt get popped immediately
+        if main.Pac.direction == move:
             nextmoves.pop(0)
     else:
         move = main.Pac.direction
@@ -258,11 +253,6 @@ async def moveshit(main):
 
     charlist = [main.Ghosts[0], main.Ghosts[1], main.Ghosts[2], main.Ghosts[3], main.Pac]
     
-    #random chance for fruit to be added to matrix (only adds)
-
-    #fruit check is done in PacgameCheck now
-    #update GHOSTS in parallel?
-    
     main.emojiupdate(charlist, prevspaces)
 
 async def boardupdate(main):
@@ -274,8 +264,6 @@ async def boardupdate(main):
     if len(nextmoves)>0:
         nextturns = ''.join(nextmoves)
 
-    #if pac is dead?
-    #main.game.title = f"Lives: {main.lives}"
     main.game.set_field_at(4, name=f"Score: {main.score}, High score: {topscore}", value=f"Next moves: {nextturns}", inline=False)     
 
 async def waittime(time):
@@ -302,5 +290,4 @@ async def resetpos(main):
         ghost.state = "random"
         ghost.changeemoji(ghost.state)
 
-#SWAP THIS OUT BEFORE UPLOADING TO GITHUB/BLANK FOR OTHERS TO PUT THEIR SHIT IN
-client.run('ODA2NzAwODg3MjcwODgzMzU4.YBtQvw.N7ATi5TFXsI7wVyrWy65wUBAJdU')
+client.run('YOUR TOKEN HERE')

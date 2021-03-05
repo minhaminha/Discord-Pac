@@ -61,9 +61,6 @@ class Game:
         dirchange = False
         again = [False, 0, False, char.state]
 
-        #dont change movespeed
-        #BUT interesting: ghosts apparently stop at corners before moving on
-        
         if char.direction != direction:
             result = self.directionCheck(direction, coords, char)
             if result[0]:
@@ -76,7 +73,6 @@ class Game:
     
         return [dirchange, again[0], again[1], again[2], again[3]]
 
-    #change to a loop?
     def directionCheck(self, direction, coords, chara):
         if direction == Extra[15] and coords[0] != 1: #w
             chara.coord[0] -= 1
@@ -105,7 +101,6 @@ class Game:
         elif coord == 2: #fruit collision
             ate = True
             score = 200
-            #SOMETHING TO INDICATE FRUIT NEEDS TO DIE
         elif coord == 4:
             if x > 10:
                 self.Pac.coord[1] = 1
@@ -148,9 +143,6 @@ class Game:
         elif ghost.state == "run":
             pacinvert = [30-pac.coord[0], 26-pac.coord[1]]
             poss = self.GhostTarget(ghost, pacinvert, x, y)
-            #THIS NEEDS TWEAKING, COULD RUN STRAIGHT INTO PAC
-            #REALL NEED TO INVERT THE SHIT
-            #ITS OWN PARAMETER?
         elif ghost.state == "dead":
             if ghost.coord == ghost.origin:
                 move = False
