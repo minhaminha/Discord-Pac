@@ -1,4 +1,4 @@
-#Discord-Pac: A PAC-MAN remake as a Discord Bot! 
+#Discord-Pac: A Pac-Man remake as a Discord Bot! 
 :ghost::alien::space_invader::robot::white_medium_square::white_medium_square::white_medium_square::smirk:
 
 To add Discord-Pac to your server: 
